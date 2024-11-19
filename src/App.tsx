@@ -32,7 +32,7 @@ function App() {
 
       <footer className="fixed bottom-0 left-0 w-full bg-gray-800 py-4 text-center">
         <p className="text-gray-400">
-          © 2024 Biblioteca Virtual | Todos os direitos reservados,0
+          © 2024 Biblioteca Virtual | Todos os direitos reservados
         </p>
       </footer>
     </div>
