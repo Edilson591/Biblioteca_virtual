@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Input } from "../Input/Input";
 import { SelectComponent } from "../SelectComponent/SelectComponent";
+import Title from "../TitleComponent/Title";
 
 interface propsForm {
   pesquisa: (input: string, select: string) => void;
@@ -18,9 +19,7 @@ export default function FormBooks({ pesquisa }: propsForm) {
   };
   return (
     <>
-      <h2 className="text-2xl font-semibold text-neutral-300">
-        Filtrar Livros
-      </h2>
+      <Title children={"Filtrar Livros"} />
       <form
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-4"
         onSubmit={onSubmit}
