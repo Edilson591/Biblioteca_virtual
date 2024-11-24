@@ -1,4 +1,4 @@
-import { FilterBooks } from "../../components/FilterBooks/FilterBooks";
+import { FilterBooks } from "../../components/FilterBooks/ComponenteBooks";
 
 export interface HomeProps {
   showFavorites: boolean;

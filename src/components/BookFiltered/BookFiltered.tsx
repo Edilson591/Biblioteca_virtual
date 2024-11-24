@@ -1,0 +1,31 @@
+import { Books } from "../../services/interfaceBooks";
+
+function BookFiltered(
+  book: Books[] | undefined,
+  filters: { search: string; category: string }
+) {
+  const { search = "", category = "" } = filters || {};
+
+  const normalizeString = (str: string) =>
+    str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLocaleLowerCase();
+
+  return book?.filter((books) => {
+    const normalizeSearch = normalizeString(search);
+
+    const matchedSearch =
+      normalizeSearch === "" ||
+      normalizeString(books.autor || "").includes(normalizeSearch) ||
+      normalizeString(books.titulo || "").includes(normalizeSearch);
+
+    const matchedCategory =
+      category === "" ||
+      normalizeString(books.categoria || "").includes(normalizeSearch);
+
+    return matchedSearch && matchedCategory;
+  });
+}
+
+export default BookFiltered
