@@ -16,19 +16,16 @@ export function ListBooks({ filters, favoritos, isFavorites }: ListBooksProps) {
   if (isLoading) return <h2>...Carregando</h2>;
   if (isError) return <h2>Ocorreu um erro ao carregar os livros</h2>;
 
-
   const booksToFilter = isFavorites ? favoritos : data;
 
-  const filteredBook = BookFiltered(booksToFilter,filters)
-
-
+  const filteredBook = BookFiltered(booksToFilter, filters);
 
   return (
     <section className="mb-8">
       <h2 className="text-2xl font-semibold text-neutral-300 mb-4">
         {isFavorites ? "Livros Favoritos" : "Livros Disponíveis"}
       </h2>
-    <ComponentBook book={filteredBook}/>
+      <ComponentBook book={filteredBook} />
     </section>
   );
 }

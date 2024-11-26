@@ -4,7 +4,7 @@ import { Books } from "./interfaceBooks";
 const booksApi = createApi({
   reducerPath: "booksApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3020",
+    baseUrl: "https://crud-book-ng42.onrender.com",
   }),
   endpoints: (builder) => ({
     getBooks: builder.query<Books[], void>({

@@ -3,8 +3,8 @@ import { SelectProps } from "./interfaceSelect";
 export function SelectComponent({ onChange, value }: SelectProps) {
   const options = [
     { value: "", label: "Selecionar Categoria" },
-    { value: "ficcao", label: "Ficção" },
-    { value: "romance", label: "Romance" },
+    { value: "autoajuda", label: "autoajuda" },
+    { value: "universitario", label: "universitario" },
     { value: "aventura", label: "Aventura" },
   ];
 

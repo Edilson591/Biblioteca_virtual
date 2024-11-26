@@ -14,8 +14,7 @@ export default function FormBooks({ pesquisa }: propsForm) {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     pesquisa(selectInput.toLocaleLowerCase(), selectValue.toLocaleLowerCase());
-    setSelectInput("");
-    setSelectValue("");
+    
   };
   return (
     <>

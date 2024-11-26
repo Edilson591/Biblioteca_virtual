@@ -14,6 +14,7 @@ function BookFiltered(
 
   return book?.filter((books) => {
     const normalizeSearch = normalizeString(search);
+    const normalizeCategory = normalizeString(category);
 
     const matchedSearch =
       normalizeSearch === "" ||
@@ -22,9 +23,9 @@ function BookFiltered(
 
     const matchedCategory =
       category === "" ||
-      normalizeString(books.categoria || "").includes(normalizeSearch);
+      normalizeString(books.categoria || "").includes(normalizeCategory);
 
-    return matchedSearch && matchedCategory;
+    return matchedSearch && matchedCategory ;
   });
 }
 

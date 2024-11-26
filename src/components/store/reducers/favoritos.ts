@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Books } from "../../../services/interfaceBooks";
 
+const storedFavorite = JSON.parse(localStorage.getItem("favorites") || "[]")
+
 interface FavoritosBooks {
   book: Books[];
 }
 
 const inicialState: FavoritosBooks = {
-  book: [],
+  book: storedFavorite,
 };
 
 const favoritoSlice = createSlice({
