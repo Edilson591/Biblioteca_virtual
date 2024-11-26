@@ -5,7 +5,6 @@ export function SelectComponent({ onChange, value }: SelectProps) {
     { value: "", label: "Selecionar Categoria" },
     { value: "autoajuda", label: "autoajuda" },
     { value: "universitario", label: "universitario" },
-    { value: "aventura", label: "Aventura" },
   ];
 
   return (

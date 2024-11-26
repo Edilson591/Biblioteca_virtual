@@ -17,7 +17,7 @@ export function Home({ showFavorites }: HomeProps) {
   }, [booksFavoritosRedux]);
   return (
     <>
-        <div className="max-w-7xl mx-auto px-4 ">
+        <div className="max-w-7xl mx-auto md:px-0 px-4">
           {!showFavorites && (
             <FilterBooks />
           )}

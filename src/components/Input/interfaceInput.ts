@@ -3,4 +3,5 @@ export interface InputPros {
   onChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
   placeholder: string;
+  id?: string;
 }

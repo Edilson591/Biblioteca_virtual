@@ -53,6 +53,7 @@ export function ComponentBook({ book }: BookProps) {
               </h3>
               <p className="text-gray-400">Autor: {item.autor}</p>
               <p className="text-gray-400">Categoria: {item.categoria}</p>
+              <p className="text-gray-400">Status: {item.disponibilidade === true ? "Disponivel" : "Indisponivel"}</p>
               <p className="text-gray-300 mt-2 hover:overflow-auto hover:whitespace-normal hover:line-clamp-none line-clamp-4 text-ellipsis w-full h-24 scrollbar-thin scrollbar-webkit">
                 {item.descricao}
               </p>

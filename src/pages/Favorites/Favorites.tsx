@@ -40,7 +40,7 @@ export function Favorites({ showFavorites }: FavoriteProps) {
   return (
     <>
       {showFavorites && (
-        <div className="max-w-7xl mx-auto px-4 my-8">
+        <div className="max-w-7xl mx-auto md:px-0 px-4 my-8">
           {showFavorites && (
             <>
               <FormBooks pesquisa={handleFiltrosFavoritos} />
