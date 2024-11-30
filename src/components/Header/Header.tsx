@@ -4,7 +4,7 @@ import { HeaderProps } from "./interfaceHeader";
 export default function Header({onToggleFavorites}: HeaderProps) {
   return (
     <header className="bg-gray-800 p-4">
-      <nav className="flex flex-col gap-4 sm:flex-row sm:gap-0 justify-between items-center mx-auto container ">
+      <nav className="flex flex-col gap-4 sm:flex-row sm:gap-0 justify-between items-center mx-auto max-w-screen-xl">
         <h1 className="text-3xl font-bold text-neutral-300">
           Biblioteca Virtual
         </h1>

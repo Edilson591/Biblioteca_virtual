@@ -11,6 +11,7 @@ const inicialState: FavoritosBooks = {
   book: storedFavorite,
 };
 
+ 
 const favoritoSlice = createSlice({
   name: "favoritos",
   initialState: inicialState,

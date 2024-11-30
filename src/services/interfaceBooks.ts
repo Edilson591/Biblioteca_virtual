@@ -5,7 +5,7 @@ export interface Books {
   autor: string | null;
   disponibilidade: boolean;
   titulo: string;
-  img: string;
+  img?: string;
   create_at: Date | null;
   update_at: Date | null;
 }

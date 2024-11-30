@@ -1,9 +1,9 @@
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./components/Header/Header";
-import { Home } from "./pages/Home/Home";
-import { Favorites } from "./pages/Favorites/Favorites";
+
 import { useState } from "react";
-import NewBook from "./pages/newBook/newBook";
+import RoutesBooks from "./routes/Routes";
+
 
 function App() {
   const [, setShowFavorites] = useState(false);
@@ -26,17 +26,7 @@ function App() {
       <Header onToggleFavorites={handleToggleFavorites} />
       <div className="container mx-auto">
         <main className="py-8">
-          <Routes>
-            <Route path="/" element={<Home showFavorites={false} />} />
-            <Route
-              path="/favorite"
-              element={<Favorites showFavorites={true} />}
-            />
-            <Route
-              path="/newBook"
-              element={<NewBook showFavorites={false} />}
-            />
-          </Routes>
+          <RoutesBooks/>
         </main>
 
         <footer className="fixed bottom-0 left-0 w-full bg-gray-800 py-4 text-center">

@@ -28,12 +28,6 @@ export function ComponentBook({ book }: BookProps) {
     }
   }, [dispatch]);
 
-  console.log("Estado dos favoritos no Redux:", favoritos);
-  console.log(
-    "Estado salvo no localStorage:",
-    localStorage.getItem("favorites")
-  );
-
   return (
     <>
       {book?.length ? (
