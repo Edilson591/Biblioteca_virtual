@@ -8,7 +8,7 @@ import { store } from "./components/store/index.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter future={{v7_relativeSplatPath: true}}>
+    <BrowserRouter>
     <Provider store={store}>
       <App />
     </Provider>
