@@ -11,7 +11,7 @@ export default function Header({onToggleFavorites}: HeaderProps) {
         <ul className="flex space-x-6">
           <li>
             <Link
-              to="./"
+              to="/"
               className="text-lg text-neutral-300 hover:text-neutral-400"
             >
               Início
@@ -19,7 +19,7 @@ export default function Header({onToggleFavorites}: HeaderProps) {
           </li>
           <li>
             <Link
-              to="./favorite"
+              to="/favorite"
               className="text-lg text-neutral-300 hover:text-neutral-400"
             >
               <button onClick={onToggleFavorites}>Favoritos</button>
@@ -27,7 +27,7 @@ export default function Header({onToggleFavorites}: HeaderProps) {
           </li>
           <li>
             <Link
-              to="./newBook"
+              to="/newBook"
               className="text-lg text-neutral-300 hover:text-neutral-400"
             >
               Adicionar Livro
