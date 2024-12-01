@@ -4,6 +4,7 @@ import { ListBooks } from "../../components/ListBooks/ListBooks";
 import { useSelector } from "react-redux";
 import { RootReducer } from "../../components/store";
 import { Books } from "../../services/interfaceBooks";
+import useStorage from "../../components/Hooks/useStorage";
 
 interface FavoriteProps {
   showFavorites: boolean;
@@ -13,6 +14,7 @@ export function Favorites({ showFavorites }: FavoriteProps) {
   const booksFavoritosRedux = useSelector(
     (state: RootReducer) => state.favoritos.book
   );
+  const {getFromLocalStorage,saveLocalStorage} = useStorage()
   const [filtrosFavoritos, setfiltrosFavoritos] = useState({
     search: "",
     category: "",
@@ -23,36 +25,29 @@ export function Favorites({ showFavorites }: FavoriteProps) {
     setfiltrosFavoritos({ search, category });
   };
   useEffect(() => {
-    const storedFavorite = JSON.parse(
-      localStorage.getItem("favorites") || "[]"
-    );
-    if(storedFavorite.length) {
-      setBooksFavorites(storedFavorite);
+        const storedFavorites = getFromLocalStorage("favoritos") || "[]"
+        if (storedFavorites) {
+          setBooksFavorites(storedFavorites); 
     }
-  }, []);
+  }, [getFromLocalStorage]);
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(booksFavoritosRedux));
-    setBooksFavorites(booksFavoritosRedux);
-  }, [booksFavoritosRedux]);
+      saveLocalStorage("favoritos",booksFavoritosRedux);
+      setBooksFavorites(booksFavoritosRedux);
+  }, [booksFavoritosRedux,saveLocalStorage]);
 
-  console.log("Livros favoritos",booksFavorites)
   return (
     <>
-      {showFavorites && (
-        <div className="max-w-7xl mx-auto md:px-0 px-4 my-8">
-          {showFavorites && (
-            <>
-              <FormBooks pesquisa={handleFiltrosFavoritos} />
-              <ListBooks
-                favoritos={booksFavorites}
-                isFavorites={true}
-                filters={filtrosFavoritos}
-              />
-            </>
-          )}
-        </div>
-      )}
-    </>
-  );
+    {showFavorites && (
+      <div className="max-w-7xl mx-auto md:px-0 px-4 my-8">
+        <FormBooks pesquisa={handleFiltrosFavoritos} />
+        <ListBooks
+          favoritos={booksFavorites}
+          isFavorites={true}
+          filters={filtrosFavoritos}
+        />
+      </div>
+    )}
+  </>
+);
 }

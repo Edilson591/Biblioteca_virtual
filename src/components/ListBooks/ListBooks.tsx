@@ -19,6 +19,7 @@ export function ListBooks({ filters, favoritos, isFavorites }: ListBooksProps) {
   const booksToFilter = isFavorites ? favoritos : data;
 
   const filteredBook = BookFiltered(booksToFilter, filters);
+  
 
   return (
     <section className="mb-8">
