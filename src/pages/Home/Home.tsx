@@ -3,11 +3,8 @@ import { FilterBooks } from "../../components/FilterBooks/ComponenteBooks";
 import { RootReducer } from "../../components/store";
 import { useEffect } from "react";
 
-export interface HomeProps {
-  showFavorites: boolean;
-}
 
-export function Home({ showFavorites }: HomeProps) {
+export function Home() {
   const booksFavoritosRedux = useSelector(
     (state: RootReducer) => state.favoritos.book
   );
@@ -18,9 +15,7 @@ export function Home({ showFavorites }: HomeProps) {
   return (
     <>
         <div className="max-w-7xl mx-auto md:px-0 px-4">
-          {!showFavorites && (
             <FilterBooks />
-          )}
         </div>
     </>
   );

@@ -13,11 +13,11 @@ function RoutesBooks() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home showFavorites={false} />} />
-        <Route path="/favorite" element={<Favorites showFavorites={true} />} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/favorite" element={<Favorites/>} />
           <Route
             path="/newBook"
-            element={isAuthenticated ? <NewBook showFavorites={false} /> : <LoginBook showFavorites={false}/>}
+            element={isAuthenticated ? <NewBook /> : <LoginBook/>}
           />
       </Routes>
     </>

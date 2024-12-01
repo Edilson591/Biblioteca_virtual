@@ -6,11 +6,8 @@ import { RootReducer } from "../../components/store";
 import { Books } from "../../services/interfaceBooks";
 import useStorage from "../../components/Hooks/useStorage";
 
-interface FavoriteProps {
-  showFavorites: boolean;
-}
 
-export function Favorites({ showFavorites }: FavoriteProps) {
+export function Favorites() {
   const booksFavoritosRedux = useSelector(
     (state: RootReducer) => state.favoritos.book
   );
@@ -38,7 +35,6 @@ export function Favorites({ showFavorites }: FavoriteProps) {
 
   return (
     <>
-    {showFavorites && (
       <div className="max-w-7xl mx-auto md:px-0 px-4 my-8">
         <FormBooks pesquisa={handleFiltrosFavoritos} />
         <ListBooks
@@ -47,7 +43,6 @@ export function Favorites({ showFavorites }: FavoriteProps) {
           filters={filtrosFavoritos}
         />
       </div>
-    )}
   </>
 );
 }
