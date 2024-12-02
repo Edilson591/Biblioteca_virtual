@@ -15,18 +15,22 @@ export function ComponentBook({ book }: BookProps) {
     (state: RootReducer) => state.favoritos.book || []
   );
 
-
   useEffect(() => {
-      const storedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]")
+    if (typeof window !== "undefined") {
+      const storedFavorites = JSON.parse(
+        localStorage.getItem("favorites") || "[]"
+      );
       if (storedFavorites) {
         storedFavorites.forEach((book: Books) => dispatch(favoritar(book)));
+      }
     }
   }, [dispatch]);
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favoritos));
+    if(typeof window !== 'undefined'){
+      localStorage.setItem("favorites", JSON.stringify(favoritos));
+    }
   }, [favoritos]);
-
 
   return (
     <>

@@ -20,17 +20,21 @@ export function Favorites() {
     setfiltrosFavoritos({ search, category });
   };
   useEffect(() => {
-    const storedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]"
-    );
-    if (storedFavorites) {
-      setBooksFavorites(storedFavorites);
+    if(typeof window !== 'undefined'){
+      const storedFavorites = JSON.parse(
+        localStorage.getItem("favorites") || "[]"
+      );
+      if (storedFavorites) {
+        setBooksFavorites(storedFavorites);
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(booksFavoritosRedux));
-    setBooksFavorites(booksFavoritosRedux);
+    if(typeof window !== 'undefined'){
+      localStorage.setItem("favorites", JSON.stringify(booksFavoritosRedux));
+      setBooksFavorites(booksFavoritosRedux);
+    }
   }, [booksFavoritosRedux]);
 
   return (

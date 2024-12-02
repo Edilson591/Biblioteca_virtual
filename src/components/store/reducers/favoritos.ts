@@ -2,8 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Books } from "../../../services/interfaceBooks";
 
 const getStoredFavorites = () => {
+  if(typeof window !== 'undefined'){
     const storedFavorites = localStorage.getItem("favorites");
     return storedFavorites ? JSON.parse(storedFavorites) : [];
+  }
 };
 const storedFavorite = getStoredFavorites()
 

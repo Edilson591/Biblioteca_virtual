@@ -10,7 +10,9 @@ export function Home() {
   );
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(booksFavoritosRedux));
+    if(typeof window !== 'undefined'){
+      localStorage.setItem("favorites", JSON.stringify(booksFavoritosRedux));
+    }
   }, [booksFavoritosRedux]);
   return (
     <>
