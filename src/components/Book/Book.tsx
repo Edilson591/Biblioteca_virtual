@@ -14,23 +14,31 @@ export function ComponentBook({ book }: BookProps) {
   const favoritos = useSelector(
     (state: RootReducer) => state.favoritos.book || []
   );
+  useEffect(() => {
+    if(typeof window !== 'undefined' && window.localStorage){
+      try {
+        localStorage.setItem("favorites", JSON.stringify(favoritos));
+      } catch (error) {
+        console.error("Erro ao ler favoritos do localStorage", error);
+      }
+    }
+  }, [favoritos]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedFavorites = JSON.parse(
-        localStorage.getItem("favorites") || "[]"
-      );
-      if (storedFavorites) {
-        storedFavorites.forEach((book: Books) => dispatch(favoritar(book)));
+    const storedFavorites =  localStorage.getItem("favorites") || "[]"
+    if (typeof window !== "undefined" && window.localStorage) {
+      try {
+        const parsedFavorites = JSON.parse(storedFavorites);
+        if (Array.isArray(parsedFavorites)) {
+          parsedFavorites.forEach((book: Books) => dispatch(favoritar(book)));
+        }
+      } catch (error) {
+        console.error("Erro ao ler favoritos do localStorage", error);
       }
     }
   }, [dispatch]);
 
-  useEffect(() => {
-    if(typeof window !== 'undefined'){
-      localStorage.setItem("favorites", JSON.stringify(favoritos));
-    }
-  }, [favoritos]);
+  
 
   return (
     <>

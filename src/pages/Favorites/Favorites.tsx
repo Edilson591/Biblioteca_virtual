@@ -19,23 +19,33 @@ export function Favorites() {
   const handleFiltrosFavoritos = (search: string, category: string) => {
     setfiltrosFavoritos({ search, category });
   };
+
   useEffect(() => {
-    if(typeof window !== 'undefined'){
-      const storedFavorites = JSON.parse(
-        localStorage.getItem("favorites") || "[]"
-      );
+    if (typeof window !== "undefined" && window.localStorage) {
+      try {
+        localStorage.setItem("favorites", JSON.stringify(booksFavoritosRedux));
+        setBooksFavorites(booksFavoritosRedux);
+      } catch (error) {
+        console.error("Erro ao ler favoritos do localStorage", error);
+      }
+    }
+  }, [booksFavoritosRedux]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      const storedFavorites = localStorage.getItem("favorites") || "[]";
       if (storedFavorites) {
-        setBooksFavorites(storedFavorites);
+        try {
+          const parseFavorites = JSON.parse(storedFavorites);
+          if (Array.isArray(parseFavorites)) {
+            setBooksFavorites(parseFavorites);
+          }
+        } catch (error) {
+          console.error("Erro ao ler favoritos do localStorage", error);
+        }
       }
     }
   }, []);
-
-  useEffect(() => {
-    if(typeof window !== 'undefined'){
-      localStorage.setItem("favorites", JSON.stringify(booksFavoritosRedux));
-      setBooksFavorites(booksFavoritosRedux);
-    }
-  }, [booksFavoritosRedux]);
 
   return (
     <>

@@ -10,10 +10,11 @@ export function Home() {
   );
 
   useEffect(() => {
-    if(typeof window !== 'undefined'){
+    if(typeof window !== 'undefined' && window.localStorage){
       localStorage.setItem("favorites", JSON.stringify(booksFavoritosRedux));
     }
   }, [booksFavoritosRedux]);
+
   return (
     <>
         <div className="max-w-7xl mx-auto md:px-0 px-4">

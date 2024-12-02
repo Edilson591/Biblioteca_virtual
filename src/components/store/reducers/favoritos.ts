@@ -1,11 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Books } from "../../../services/interfaceBooks";
 
-const getStoredFavorites = () => {
-  if(typeof window !== 'undefined'){
+const getStoredFavorites = (): Books[] => {
+  if (typeof window !== "undefined" && window.localStorage) {
     const storedFavorites = localStorage.getItem("favorites");
-    return storedFavorites ? JSON.parse(storedFavorites) : [];
+    if (storedFavorites) {
+      const parsedFavorites = JSON.parse(storedFavorites);
+      if (Array.isArray(parsedFavorites)) {
+        return parsedFavorites;
+      }
+    }
   }
+  return [];
 };
 const storedFavorite = getStoredFavorites()
 
@@ -29,7 +35,7 @@ const favoritoSlice = createSlice({
       } else {
         state.book = [...state.book, book];
       }
-      if (typeof window !== "undefined") {
+      if (typeof window !== "undefined" && window.localStorage) {
         localStorage.setItem("favorites", JSON.stringify(state.book));
       }
     },
@@ -39,3 +45,4 @@ const favoritoSlice = createSlice({
 export const { favoritar } = favoritoSlice.actions;
 
 export default favoritoSlice.reducer;
+
