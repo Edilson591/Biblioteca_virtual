@@ -1,29 +1,11 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./components/Header/Header";
-
-import { useState } from "react";
 import RoutesBooks from "./routes/Routes";
 
 
 function App() {
-  const [, setShowFavorites] = useState(false);
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleToggleFavorites = () => {
-    const isFavoritesPage = location.pathname === "/favorite";
-    if (isFavoritesPage) {
-      setShowFavorites(false);
-      navigate("/");
-    } else {
-      setShowFavorites(true);
-      navigate("/favorite");
-    }
-  };
   return (
     <>
-      <Header onToggleFavorites={handleToggleFavorites} />
+      <Header  />
       <div className="container mx-auto">
         <main className="py-8">
           <RoutesBooks/>

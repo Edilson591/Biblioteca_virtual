@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { HeaderProps } from "./interfaceHeader";
 
-export default function Header({onToggleFavorites}: HeaderProps) {
+export default function Header() {
   return (
     <header className="bg-gray-800 p-4">
       <nav className="flex flex-col gap-4 sm:flex-row sm:gap-0 justify-between items-center mx-auto max-w-screen-xl">
@@ -22,7 +21,7 @@ export default function Header({onToggleFavorites}: HeaderProps) {
               to="/favorite"
               className="text-lg text-neutral-300 hover:text-neutral-400"
             >
-              <button onClick={onToggleFavorites}>Favoritos</button>
+              Favoritos
             </Link>
           </li>
           <li>
