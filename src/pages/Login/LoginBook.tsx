@@ -1,5 +1,4 @@
 import Title from "../../components/TitleComponent/Title";
-import { HomeProps } from "../Home/Home";
 
 function LoginBook() {
   return (
