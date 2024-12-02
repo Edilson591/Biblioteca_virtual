@@ -22,14 +22,14 @@ export function Favorites() {
     setfiltrosFavoritos({ search, category });
   };
   useEffect(() => {
-        const storedFavorites = getFromLocalStorage("favoritos") || "[]"
+        const storedFavorites = getFromLocalStorage("favorites") || "[]"
         if (storedFavorites) {
           setBooksFavorites(storedFavorites); 
     }
   }, [getFromLocalStorage]);
 
   useEffect(() => {
-      saveLocalStorage("favoritos",booksFavoritosRedux);
+      saveLocalStorage("favorites",booksFavoritosRedux);
       setBooksFavorites(booksFavoritosRedux);
   }, [booksFavoritosRedux,saveLocalStorage]);
 

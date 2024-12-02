@@ -18,14 +18,14 @@ export function ComponentBook({ book }: BookProps) {
   const { getFromLocalStorage, saveLocalStorage} = useStorage();
 
   useEffect(() => {
-      const storedFavorites = getFromLocalStorage("favoritos") || "[]"
+      const storedFavorites = getFromLocalStorage("favorites") || "[]"
       if (storedFavorites) {
         storedFavorites.forEach((book: Books) => dispatch(favoritar(book)));
     }
   }, [dispatch,getFromLocalStorage]);
 
   useEffect(() => {
-    saveLocalStorage("favoritos", favoritos);
+    saveLocalStorage("favorites", favoritos);
   }, [favoritos, saveLocalStorage]);
 
 
