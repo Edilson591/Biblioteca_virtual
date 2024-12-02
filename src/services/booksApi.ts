@@ -4,7 +4,7 @@ import { Books } from "./interfaceBooks";
 const booksApi = createApi({
   reducerPath: "booksApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:1000/books",
+    baseUrl: "http://localhost:1000/",
   }),
   endpoints: (builder) => ({
     getBooks: builder.query<Books[], void>({
