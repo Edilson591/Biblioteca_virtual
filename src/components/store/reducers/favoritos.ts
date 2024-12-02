@@ -28,7 +28,7 @@ const favoritoSlice = createSlice({
         state.book = [...state.book, book];
       }
       if (typeof window !== "undefined") {
-        localStorage.setItem("favoritos", JSON.stringify(state.book));
+        localStorage.setItem("favorites", JSON.stringify(state.book));
       }
     },
   },
