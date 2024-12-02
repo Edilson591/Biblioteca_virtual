@@ -4,14 +4,12 @@ import { ListBooks } from "../../components/ListBooks/ListBooks";
 import { useSelector } from "react-redux";
 import { RootReducer } from "../../components/store";
 import { Books } from "../../services/interfaceBooks";
-import useStorage from "../../components/Hooks/useStorage";
-
 
 export function Favorites() {
   const booksFavoritosRedux = useSelector(
     (state: RootReducer) => state.favoritos.book
   );
-  const {getFromLocalStorage,saveLocalStorage} = useStorage()
+
   const [filtrosFavoritos, setfiltrosFavoritos] = useState({
     search: "",
     category: "",
@@ -22,16 +20,18 @@ export function Favorites() {
     setfiltrosFavoritos({ search, category });
   };
   useEffect(() => {
-        const storedFavorites = getFromLocalStorage("favorites") || "[]"
-        if (storedFavorites) {
-          setBooksFavorites(storedFavorites); 
+    const storedFavorites = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
+    );
+    if (storedFavorites) {
+      setBooksFavorites(storedFavorites);
     }
-  }, [getFromLocalStorage]);
+  }, []);
 
   useEffect(() => {
-      saveLocalStorage("favorites",booksFavoritosRedux);
-      setBooksFavorites(booksFavoritosRedux);
-  }, [booksFavoritosRedux,saveLocalStorage]);
+    localStorage.setItem("favorites", JSON.stringify(booksFavoritosRedux));
+    setBooksFavorites(booksFavoritosRedux);
+  }, [booksFavoritosRedux]);
 
   return (
     <>
@@ -43,6 +43,6 @@ export function Favorites() {
           filters={filtrosFavoritos}
         />
       </div>
-  </>
-);
+    </>
+  );
 }

@@ -5,7 +5,6 @@ import { favoritar } from "../store/reducers/favoritos";
 import { useEffect } from "react";
 import Star from "@mui/icons-material/Star";
 import StarOutline from "@mui/icons-material/StarOutline";
-import useStorage from "../Hooks/useStorage";
 
 interface BookProps {
   book: Books[] | undefined;
@@ -15,18 +14,18 @@ export function ComponentBook({ book }: BookProps) {
   const favoritos = useSelector(
     (state: RootReducer) => state.favoritos.book || []
   );
-  const { getFromLocalStorage, saveLocalStorage} = useStorage();
+
 
   useEffect(() => {
-      const storedFavorites = getFromLocalStorage("favorites") || "[]"
+      const storedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]")
       if (storedFavorites) {
         storedFavorites.forEach((book: Books) => dispatch(favoritar(book)));
     }
-  }, [dispatch,getFromLocalStorage]);
+  }, [dispatch]);
 
   useEffect(() => {
-    saveLocalStorage("favorites", favoritos);
-  }, [favoritos, saveLocalStorage]);
+    localStorage.setItem("favorites", JSON.stringify(favoritos));
+  }, [favoritos]);
 
 
   return (
