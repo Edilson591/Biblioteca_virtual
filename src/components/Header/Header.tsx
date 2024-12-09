@@ -1,6 +1,16 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../store/reducers/authReducer/auth";
+import { RootReducer } from "../store";
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const handleLog = () => {
+    dispatch(logout());
+  };
+  const { isAuthenticated } = useSelector(
+    (state: RootReducer) => state.authBooksUser
+  );
   return (
     <header className="bg-gray-800 p-4">
       <nav className="flex flex-col gap-4 sm:flex-row sm:gap-0 justify-between items-center mx-auto max-w-screen-xl">
@@ -32,6 +42,16 @@ export default function Header() {
               Adicionar Livro
             </Link>
           </li>
+          {isAuthenticated && (
+            <li>
+              <button
+                onClick={handleLog}
+                className="bg-teal-600 text-gray-900 p-2 rounded-md hover:bg-teal-400 w-full"
+              >
+                Sair
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

@@ -14,7 +14,6 @@ export default function FormBooks({ pesquisa }: propsForm) {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     pesquisa(selectInput.toLocaleLowerCase(), selectValue.toLocaleLowerCase());
-    
   };
   return (
     <>
@@ -24,10 +23,12 @@ export default function FormBooks({ pesquisa }: propsForm) {
         onSubmit={onSubmit}
       >
         <Input
-          type="text"
-          value={selectInput}
-          placeholder="Pesquisar por título ou autor..."
           onChange={(e) => setSelectInput(e.target.value)}
+          value={selectInput}
+          inputPros={{
+            type: "text",
+            placeholder: "Pesquisar por título ou autor...",
+          }}
         />
         <SelectComponent
           value={selectValue}

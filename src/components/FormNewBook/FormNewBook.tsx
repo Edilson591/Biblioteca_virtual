@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "../Input/Input";
 import { SelectComponent } from "../SelectComponent/SelectComponent";
-import { useCreateBookMutation } from "../../services/booksApi";
+import { useCreateBookMutation, useGetBooksQuery } from "../../services/booksApi";
 import { handleSubmitForm } from "../Hooks/formHandlers";
 
 function FormNewBook() {
@@ -9,7 +9,9 @@ function FormNewBook() {
   const [autorBook, setAutorBook] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [imgLink, setImgLink] = useState<string>("");
   const [createBook] = useCreateBookMutation();
+  const {refetch} = useGetBooksQuery()
 
   return (
     <form
@@ -20,52 +22,55 @@ function FormNewBook() {
           autorBook,
           category,
           description,
+          imgLink,
           createBook,
+          refetch
         });
       }}
     >
       <div className="grid grid-cols-1 max-w-md gap-2">
         <div className="mb-2">
-          <label
-            htmlFor="nameBook"
-            className="text-neutral-300 font-bold mb-1 block"
-          >
-            Nome:
-          </label>
           <Input
-            type="text"
             onChange={(e) => setNameBook(e.target.value)}
             value={nameBook}
-            placeholder="Nome do livro"
-            id="nameBook"
+            inputPros={{
+              type: "text",
+              placeholder: "Nome do livro",
+              id:"nameBook"
+            }}
+            label="Name"
           />
         </div>
         <div className="mb-2">
-          <label
-            htmlFor="autorBook"
-            className="text-neutral-300 font-bold mb-1 block"
-          >
-            Autor:
-          </label>
           <Input
-            type="text"
             onChange={(e) => setAutorBook(e.target.value)}
             value={autorBook}
-            placeholder="Nome do autor"
-            id="nameAutor"
+            inputPros={{
+              type: "text",
+              placeholder: "Nome do autor",
+              id:"nameAutor"
+            }}
+            label="Nome do Autor"
           />
         </div>
         <div className="mb-2">
-          <label
-            htmlFor="categoriaName"
-            className="text-neutral-300 font-bold mb-1 block"
-          >
-            Categoria:
-          </label>
+          <Input
+            onChange={(e) => setImgLink(e.target.value)}
+            value={imgLink}
+            inputPros={{
+              type: "text",
+              placeholder: "Link da imagem",
+              id:"linkImg"
+            }}
+            label="Link Imagem:"
+          />
+        </div>
+        <div className="mb-2">
           <SelectComponent
             onChange={(e) => setCategory(e.target.value)}
             value={category}
             id="categoriaName"
+            label="Categoria:"
           />
         </div>
         <div className="mb-2">

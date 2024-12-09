@@ -12,10 +12,6 @@ export interface ListBooksProps {
 export function ListBooks({ filters, favoritos, isFavorites }: ListBooksProps) {
   const { data, isLoading, isError } = useGetBooksQuery();
 
-  // useEffect(() => {
-  //   localStorage.setItem("favorites", JSON.stringify(favoritos));
-  // }, [favoritos]);
-
   if (isLoading) return <h2>...Carregando</h2>;
   if (isError) return <h2>Ocorreu um erro ao carregar os livros</h2>;
 

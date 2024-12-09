@@ -3,17 +3,39 @@ import { Books } from "../../services/interfaceBooks";
 import { RootReducer } from "../store";
 import { favoritar } from "../store/reducers/favoritos";
 import Star from "@mui/icons-material/Star";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 import StarOutline from "@mui/icons-material/StarOutline";
+import {
+  useDeleteBookMutation,
+  useGetBooksQuery,
+} from "../../services/booksApi";
 
 interface BookProps {
   book: Books[] | undefined;
 }
+
 export function ComponentBook({ book }: BookProps) {
   const dispatch = useDispatch();
   const favoritos = useSelector(
     (state: RootReducer) => state.favoritos.book || []
   );
+  const { isAuthenticated } = useSelector(
+    (state: RootReducer) => state.authBooksUser
+  );
+  const [deleteBook] = useDeleteBookMutation();
+  const { refetch } = useGetBooksQuery();
+
+  const handleDeleteBooks = async (id: string) => {
+    try {
+      await deleteBook(id).unwrap();
+      refetch();
+      alert("Livro deletado com sucesso");
+    } catch (error) {
+      console.error("Erro ao excluir o livro:", error);
+      alert("Falha na solicitação.");
+    }
+  };
 
   return (
     <>
@@ -26,8 +48,13 @@ export function ComponentBook({ book }: BookProps) {
                 key={item.id}
                 className="bg-gray-800 p-4 rounded-lg shadow-md hover:bg-gray-700 h-max hover:scale-105 transition-transform duration-300 max-h-400px overflow-y-hidden relative"
               >
+                {isAuthenticated && (
+                  <button onClick={() => handleDeleteBooks(item.id)}>
+                    <CloseRoundedIcon />
+                  </button>
+                )}
                 <img
-                  src={item.img}
+                  src={item.img ? item.img : "https://placehold.co/600x400"}
                   alt={item.titulo}
                   className="w-full object-cover object-top h-48 rounded-md mb-4"
                 />

@@ -6,7 +6,7 @@ function NewBook() {
     <div className="max-w-7xl mx-auto md:px-0 px-4">
       <section className="my-8">
         <Title children={"Adicionar Livros"} />
-        <FormNewBook/>
+        <FormNewBook />
       </section>
     </div>
   );
