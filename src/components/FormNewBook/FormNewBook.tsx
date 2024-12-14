@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "../Input/Input";
 import { SelectComponent } from "../SelectComponent/SelectComponent";
-import { useCreateBookMutation, useGetBooksQuery } from "../../services/booksApi";
+import { useCreateBookMutation, useGetBooksQuery } from "../../services/apiBooks/booksApi";
 import { handleSubmitForm } from "../Hooks/formHandlers";
 
 function FormNewBook() {

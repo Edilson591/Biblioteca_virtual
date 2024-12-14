@@ -1,8 +1,8 @@
-import { Books } from "../../services/interfaceBooks";
+import { Books } from "../../services/apiBooks/Books";
 import {
   useCreateBookMutation,
   useGetBooksQuery,
-} from "../../services/booksApi";
+} from "../../services/apiBooks/booksApi";
 
 interface FormValues {
   nameBook: string;

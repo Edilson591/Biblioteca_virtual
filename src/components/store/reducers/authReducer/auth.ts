@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { inicialAuthState, User } from "./interfaceAuth";
+import { AuthUser, inicialAuthState } from "./interfaceAuth";
 
 const inicialState: inicialAuthState = {
   isAuthenticated: !!localStorage.getItem("user"),
@@ -12,7 +12,7 @@ const authSlice = createSlice({
   name: "authBooks",
   initialState: inicialState,
   reducers: {
-    login: (state, action: PayloadAction<User>) => {
+    login: (state, action: PayloadAction<AuthUser>) => {
       state.isAuthenticated = true;
       state.user = action.payload;
 

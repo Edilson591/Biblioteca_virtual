@@ -1,4 +1,4 @@
-import { Books } from "../../services/interfaceBooks";
+import { Books } from "../../services/apiBooks/Books";
 
 function BookFiltered(
   book: Books[] | undefined,

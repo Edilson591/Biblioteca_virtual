@@ -1,33 +1,32 @@
 import { useState } from "react";
 import { Input } from "../Input/Input";
-import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../store";
+import { useDispatch } from "react-redux";
 import { login } from "../store/reducers/authReducer/auth";
 import { Link } from "react-router-dom";
+import { useLoginUserMutation } from "../../services/apiUsers/apiUsers";
 
 function FormLoginBook() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector(
-    (state: RootReducer) => state.authBooksUser
-  );
-  const generateToken = () => {
-    return window.crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
-  };
+  const [loginUser] = useLoginUserMutation();
 
   const handleLoginBook = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (
-      !isAuthenticated &&
-      email === "email@exemplo.com" &&
-      password === "123"
-    ) {
-      const token = generateToken();
-      const user = { email };
-
-      localStorage.setItem("user", JSON.stringify({ user, token }));
-      dispatch(login(user));
+    try {
+      const response = await loginUser({ email, password }).unwrap();
+      if (response) {
+        const { token, message } = response;
+        localStorage.setItem("user", JSON.stringify({ token }));
+        dispatch(login(response));
+        alert(message);
+      }
+    } catch (error) {
+      console.error("Erro de login:", error);
+      const errorMessage = (error as { data: { error: string } }).data.error;
+      if (errorMessage) {
+        console.log(errorMessage);
+      }
     }
   };
   return (
@@ -51,7 +50,12 @@ function FormLoginBook() {
             placeholder: "Digite sua senha",
           }}
         />
-        <Link to="/" className="float-end mb-4  text-neutral-300 hover:text-neutral-400">Esqueceu a senha ?</Link>
+        <Link
+          to="/"
+          className="float-end mb-4  text-neutral-300 hover:text-neutral-400"
+        >
+          Esqueceu a senha ?
+        </Link>
       </div>
       <div className="mt-4 block">
         <button
@@ -64,7 +68,7 @@ function FormLoginBook() {
       <div className="mt-4 block">
         <button
           className="bg-teal-600 text-gray-900 p-2 rounded-md hover:bg-teal-400 w-full"
-          type="submit"
+          type="button"
         >
           Cadastra novo usuario
         </button>

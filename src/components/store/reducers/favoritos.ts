@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Books } from "../../../services/interfaceBooks";
+import { Books } from "../../../services/apiBooks/Books";
 
 const getStoredFavorites = (): Books[] => {
   if (typeof window !== "undefined") {

@@ -1,9 +1,9 @@
-export interface User {
-  email: string;
-  password?: string;
+export interface AuthUser {
+  message: string;
+  token: string;
 }
 
 export interface inicialAuthState {
   isAuthenticated: boolean;
-  user: User | null;
+  user: AuthUser | null;
 }

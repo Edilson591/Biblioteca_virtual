@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Books } from "../../services/interfaceBooks";
+import { Books } from "../../services/apiBooks/Books";
 import { RootReducer } from "../store";
 import { favoritar } from "../store/reducers/favoritos";
 import Star from "@mui/icons-material/Star";
@@ -9,7 +9,7 @@ import StarOutline from "@mui/icons-material/StarOutline";
 import {
   useDeleteBookMutation,
   useGetBooksQuery,
-} from "../../services/booksApi";
+} from "../../services/apiBooks/booksApi";
 
 interface BookProps {
   book: Books[] | undefined;

@@ -1,5 +1,5 @@
-import { useGetBooksQuery } from "../../services/booksApi";
-import { Books } from "../../services/interfaceBooks";
+import { useGetBooksQuery } from "../../services/apiBooks/booksApi";
+import { Books } from "../../services/apiBooks/Books";
 import { ComponentBook } from "../Book/Book";
 import BookFiltered from "../BookFiltered/BookFiltered";
 
