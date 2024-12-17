@@ -1,74 +1,89 @@
 import { useState } from "react";
 import { Input } from "../Input/Input";
 import { SelectComponent } from "../SelectComponent/SelectComponent";
-import { useCreateBookMutation, useGetBooksQuery } from "../../services/apiBooks/booksApi";
+import {
+  useCreateBookMutation,
+  useGetBooksQuery,
+} from "../../services/apiBooks/booksApi";
 import { handleSubmitForm } from "../Hooks/formHandlers";
+import { useNavigate } from "react-router-dom";
+import { NewBook } from "./interfaceNewBook";
 
 function FormNewBook() {
-  const [nameBook, setNameBook] = useState<string>("");
-  const [autorBook, setAutorBook] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [imgLink, setImgLink] = useState<string>("");
+  const [formBook, setFormBook] = useState<NewBook | undefined>();
   const [createBook] = useCreateBookMutation();
-  const {refetch} = useGetBooksQuery()
+  const { refetch } = useGetBooksQuery();
+  const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    if(formBook){
+      setFormBook({
+        ...formBook,
+        [e.target.name]: e.target.value,
+      });
+      console.log(formBook);
+    }
+  };
 
   return (
     <form
       className="my-4"
       onSubmit={(event) => {
-        handleSubmitForm(event, {
-          nameBook,
-          autorBook,
-          category,
-          description,
-          imgLink,
-          createBook,
-          refetch
-        });
+        if(formBook){
+          handleSubmitForm(event, {
+            formBook,
+            createBook,
+            refetch,
+            navigate,
+          });
+        }
       }}
     >
       <div className="grid grid-cols-1 max-w-md gap-2">
         <div className="mb-2">
           <Input
-            onChange={(e) => setNameBook(e.target.value)}
-            value={nameBook}
+            onChange={handleChange}
+            value={formBook?.name}
             inputPros={{
+              name: "name",
               type: "text",
               placeholder: "Nome do livro",
-              id:"nameBook"
+              id: "nameBook",
             }}
-            label="Name"
+            label="Name: "
           />
         </div>
         <div className="mb-2">
           <Input
-            onChange={(e) => setAutorBook(e.target.value)}
-            value={autorBook}
+            onChange={handleChange}
+            value={formBook?.autor}
             inputPros={{
+              name: "autor",
               type: "text",
               placeholder: "Nome do autor",
-              id:"nameAutor"
+              id: "nameAutor",
             }}
-            label="Nome do Autor"
+            label="Nome do Autor: "
           />
         </div>
         <div className="mb-2">
           <Input
-            onChange={(e) => setImgLink(e.target.value)}
-            value={imgLink}
+            onChange={handleChange}
+            value={formBook?.imagemBook}
             inputPros={{
+              name: "img",
               type: "text",
               placeholder: "Link da imagem",
-              id:"linkImg"
+              id: "linkImg",
             }}
             label="Link Imagem:"
           />
         </div>
         <div className="mb-2">
           <SelectComponent
-            onChange={(e) => setCategory(e.target.value)}
-            value={category}
+            onChange={handleChange}
+            value={formBook?.categoria}
+            name="categoria"
             id="categoriaName"
             label="Categoria:"
           />
@@ -82,9 +97,10 @@ function FormNewBook() {
           </label>
           <textarea
             id="description"
-            className="w-full h-40 p-2 rounded-md border border-neutral-500 bg-gray-800 text-neutral-300 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-blue-950"
+            className="w-full h-40 p-2 rounded-md border border-neutral-500 bg-gray-800 text-neutral-300 hover:overflow-auto hover:whitespace-normal hover:line-clamp-none line-clamp-4 text-ellipsis scrollbar-thin scrollbar-webkit focus:outline-none focus:ring-2 focus:ring-blue-950 resize-none"
             placeholder="Descrição do livro"
-            onChange={(e) => setDescription(e.target.value)}
+            name="descricao"
+            onChange={handleChange}
           ></textarea>
         </div>
         <button

@@ -1,6 +1,7 @@
 export interface inputProps {
-  value: string;
+  value: string | undefined;
   onChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
-  inputPros: React.InputHTMLAttributes<HTMLInputElement>;
   label?: string;
+  inputPros: React.InputHTMLAttributes<HTMLInputElement>;
 }
+

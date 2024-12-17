@@ -8,4 +8,5 @@ export interface SelectProps {
   value?: string;
   id?: string;
   label?: string;
+  name?: string
 }

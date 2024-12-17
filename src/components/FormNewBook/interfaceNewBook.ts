@@ -1,4 +1,8 @@
 export interface NewBook {
-    name: string;
-    
+  name?: string;
+  autor?: string;
+  categoria?: string;
+  descricao?: string;
+  imagemBook?: string;
+
 }

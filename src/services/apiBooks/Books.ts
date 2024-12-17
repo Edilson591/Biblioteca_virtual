@@ -1,11 +1,11 @@
 export interface Books {
   id: string;
-  categoria: string;
-  descricao: string;
-  autor: string | null;
+  categoria: string | undefined;
+  descricao: string | undefined;
+  autor: string | null | undefined;
   disponibilidade: boolean;
-  titulo: string;
-  img?: string;
+  titulo: string |undefined;
+  img?: string | undefined;
   create_at: Date | null;
   update_at: Date | null;
 }

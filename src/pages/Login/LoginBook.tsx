@@ -1,18 +1,18 @@
 import FormLoginBook from "../../components/FormLoginBook/FormLoginBook";
 import Title from "../../components/TitleComponent/Title";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 function LoginBook() {
- 
-
   return (
-    <div className="max-w-7xl mx-auto md:px-0 px-4">
-      <section className="my-8 flex flex-col justify-center items-center h-[50vh]">
-        <div className="max-w-sm p-6 bg-gray-800 rounded-lg w-full">
-          <Title children={"Login Book"} />
-          <FormLoginBook/>
+      <section className="my-8 flex flex-col items-center h-full">
+        <div className="max-w-md p-6 bg-gray-800 rounded-lg w-full shadow ">
+          <div className="flex items-center justify-center gap-3">
+            <Title children={"Login Books"} className="text-center my-6" />
+            <MenuBookIcon sx={{ fontSize: 50, color: '#fff' }}/>
+          </div>
+          <FormLoginBook />
         </div>
       </section>
-    </div>
   );
 }
 
